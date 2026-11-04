@@ -47,7 +47,6 @@ cleanup:
   - /lib/python3*/site-packages/gitfourchette/assets/lang/*.pot
   - /lib/python3*/site-packages/gitfourchette/forms/*.ui
   - /lib/python3*/site-packages/gitfourchette/assets/lang/README.md
-  - /share/man
 build-options:
   env:
     - BASEAPP_REMOVE_WEBENGINE=1
@@ -123,10 +122,9 @@ modules:
     buildsystem: meson
     config-opts:
       - -Dexamples=false
-      - -Duseroot=false
       - -Dtests=false
-      - -Dudevrulesdir=/tmp/
-      - -Dinitscriptdir=
+      # Helper programs aren't needed: we install our own fusermount3 wrapper
+      - -Dutils=false
     sources:
       - type: archive
         url: https://github.com/libfuse/libfuse/releases/download/fuse-3.18.3/fuse-3.18.3.tar.gz
